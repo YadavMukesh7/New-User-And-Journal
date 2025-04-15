@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: dev
+
+
+
+#This configuration is used to override the any configuration in this application I have override the SpringSecurity with SpringSecurityProd
+
+#  main:
+#    allow-bean-definition-overriding: true
+
+
+

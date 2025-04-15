@@ -1,0 +1,19 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://mukeshyadavbt01:DVAjiEiE8oGF74hd@cluster0.xx3j9.mongodb.net/journalDB?retryWrites=true&w=majority&appName=Cluster0
+      auto-index-creation: true
+#I have set server port 8182 into intellij profiles it will come from there not from here
+server:
+  port: 9191
+  servlet:
+    context-path: /journal  # Adjust this if necessary
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  # If you want all endpoints exposed, otherwise list specific ones
+    health:
+      show-details: always  # This will always show the details for health endpoints
+

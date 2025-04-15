@@ -1,0 +1,35 @@
+<configuration>
+    <appender name="myConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <!--        Pattern for printing log in which format log will be print -->
+        <encoder>
+            <pattern>%-20(%d{yyy-MM-dd HH:mm:ss.SSS} [%X{requestId}]) %-5level - %logger{80} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!--    File appender for creating file and generating log in file -->
+    <appender name="myFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--        Log file name -->
+        <file>
+            journalApp.log
+        </file>
+        <!--       RollingPolicy creating new log file by provided certain time or file size-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--            This pattern generate new file after every minute-->
+            <fileNamePattern>journalApp.%d{yyyy-MM-dd_HH-mm}.%i.log</fileNamePattern>
+            <!--            New file will be generated if file size greater than 10MB-->
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <!--        Pattern for printing log in which format log will be print -->
+            <pattern>%-20(%d{yyy-MM-dd HH:mm:ss.SSS} [%X{requestId}]) %-5level - %logger{80} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="myConsoleAppender"/>
+        <appender-ref ref="myFileAppender"/>
+    </root>
+</configuration>
