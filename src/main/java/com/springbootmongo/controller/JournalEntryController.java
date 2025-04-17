@@ -1,6 +1,6 @@
 package com.springbootmongo.controller;
 
-import com.springbootmongo.entity.JournalEntry;
+import com.springbootmongo.entity.JournalEntity;
 import com.springbootmongo.entity.User;
 import com.springbootmongo.service.JournalEntryService;
 import com.springbootmongo.service.UserService;
@@ -25,7 +25,7 @@ public class JournalEntryController {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<?> createJournalEntry(@RequestBody JournalEntry journalEntry) {
+    public ResponseEntity<?> createJournalEntry(@RequestBody JournalEntity journalEntry) {
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
         try {
             return new ResponseEntity<>(journalEntryService.createJournalEntry(journalEntry, userName), HttpStatus.CREATED);
@@ -39,7 +39,7 @@ public class JournalEntryController {
     public ResponseEntity<?> getAllJournalEntriesOfUser() {
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
         User userByUserName = userService.findByUserName(userName);
-        List<JournalEntry> journalEntryList = userByUserName.getJournalEntries();
+        List<JournalEntity> journalEntryList = userByUserName.getJournalEntries();
         if (journalEntryList != null && !journalEntryList.isEmpty()) {
             return new ResponseEntity<>(journalEntryList, HttpStatus.OK);
         }
@@ -50,9 +50,9 @@ public class JournalEntryController {
     public ResponseEntity<?> getJournalEntryById(@PathVariable ObjectId id) {
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.findByUserName(userName);
-        List<JournalEntry> list = user.getJournalEntries().stream().filter(x -> x.getId().equals(id)).toList();
+        List<JournalEntity> list = user.getJournalEntries().stream().filter(x -> x.getId().equals(id)).toList();
         if (!list.isEmpty()) {
-            Optional<JournalEntry> journalEntry = journalEntryService.findById(id);
+            Optional<JournalEntity> journalEntry = journalEntryService.findById(id);
             if (journalEntry.isPresent()) {
                 return new ResponseEntity<>(journalEntry.get(), HttpStatus.OK);
             }
@@ -61,8 +61,8 @@ public class JournalEntryController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateJournalEntry(@PathVariable ObjectId id, @RequestBody JournalEntry updatedJournalEntry) {
-        JournalEntry journalEntry = journalEntryService.updateJournalEntry(id, updatedJournalEntry);
+    public ResponseEntity<?> updateJournalEntry(@PathVariable ObjectId id, @RequestBody JournalEntity updatedJournalEntry) {
+        JournalEntity journalEntry = journalEntryService.updateJournalEntry(id, updatedJournalEntry);
         if (journalEntry != null) {
             return new ResponseEntity<>(journalEntry, HttpStatus.OK);
         }

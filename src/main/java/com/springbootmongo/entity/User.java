@@ -3,7 +3,6 @@ package com.springbootmongo.entity;
 import com.mongodb.lang.NonNull;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -28,5 +27,5 @@ public class User {
     private String password;
     private Set<String> roles;
     @DBRef
-    private List<JournalEntry> journalEntries = new ArrayList<>();
+    private List<JournalEntity> journalEntries = new ArrayList<>();
 }

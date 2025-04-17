@@ -15,6 +15,9 @@ server:
   port: 8182
   servlet:
     context-path: /journal  # Adjust this if necessary
+weather:
+  api:
+    key: 822f8cfdb03a4358040c24fd9c77f12f
 
 #Enabled logging level from DEBUG  to its above level severity
 #logging:
