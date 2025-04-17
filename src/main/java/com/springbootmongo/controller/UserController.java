@@ -1,7 +1,9 @@
 package com.springbootmongo.controller;
 
+import com.springbootmongo.api.response.WeatherResponse;
 import com.springbootmongo.entity.User;
 import com.springbootmongo.service.UserService;
+import com.springbootmongo.service.WeatherService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private WeatherService weatherService;
 
 //    @GetMapping
 //    public ResponseEntity<?> getAllUsers() {
@@ -46,4 +50,18 @@ public class UserController {
         userService.deleteUser(userName);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping
+    public ResponseEntity<?> greeting() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userName = authentication.getName();
+        WeatherResponse weatherResponse = weatherService.getWeather("Mumbai");
+        String greeting = "";
+        if (weatherResponse != null) {
+            greeting = " whether feels like " + weatherResponse.getCurrent().getFeelslike();
+        }
+
+        return new ResponseEntity<>("Hi " + userName + greeting, HttpStatus.OK);
+    }
+
 }

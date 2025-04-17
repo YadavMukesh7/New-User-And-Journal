@@ -1,6 +1,6 @@
 package com.springbootmongo.serviceImpl;
 
-import com.springbootmongo.entity.JournalEntry;
+import com.springbootmongo.entity.JournalEntity;
 import com.springbootmongo.entity.User;
 import com.springbootmongo.repository.JournalEntryRepository;
 import com.springbootmongo.repository.UserRepository;
@@ -25,11 +25,11 @@ public class JournalEntryServiceImpl implements JournalEntryService {
 
     @Override
     @Transactional
-    public JournalEntry createJournalEntry(JournalEntry journalEntry, String userName) {
+    public JournalEntity createJournalEntry(JournalEntity journalEntry, String userName) {
         try {
             User user = userRepository.findByUserName(userName);
             journalEntry.setDate(LocalDateTime.now());
-            JournalEntry saved = journalEntryRepository.save(journalEntry);
+            JournalEntity saved = journalEntryRepository.save(journalEntry);
             user.getJournalEntries().add(saved);
 //            user.setUserName(null);
             userRepository.save(user);
@@ -46,7 +46,7 @@ public class JournalEntryServiceImpl implements JournalEntryService {
     }
 
     @Override
-    public JournalEntry updateJournalEntry(ObjectId id, JournalEntry updatedEntry) {
+    public JournalEntity updateJournalEntry(ObjectId id, JournalEntity updatedEntry) {
         updatedEntry.setId(id);
         return journalEntryRepository.save(updatedEntry);
     }
@@ -69,12 +69,12 @@ public class JournalEntryServiceImpl implements JournalEntryService {
     }
 
     @Override
-    public Optional<JournalEntry> findById(ObjectId id) {
+    public Optional<JournalEntity> findById(ObjectId id) {
         return journalEntryRepository.findById(id);
     }
 
     @Override
-    public List<JournalEntry> findAll() {
+    public List<JournalEntity> findAll() {
         return journalEntryRepository.findAll();
     }
 }

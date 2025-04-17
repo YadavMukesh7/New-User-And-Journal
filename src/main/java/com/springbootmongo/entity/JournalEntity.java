@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Document(collection = "journal_entry")
 @Data
 @NoArgsConstructor
-public class JournalEntry {
+public class JournalEntity {
     @Id
     private ObjectId id;
     @NonNull
