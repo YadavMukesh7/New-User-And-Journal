@@ -1,6 +1,7 @@
 package com.springbootmongo.controller;
 
 import com.springbootmongo.entity.User;
+import com.springbootmongo.scheduler.UserScheduler;
 import com.springbootmongo.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 public class PublicController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserScheduler userScheduler;
 
     @PostMapping
     public ResponseEntity<?> createUser(@RequestBody User user) {

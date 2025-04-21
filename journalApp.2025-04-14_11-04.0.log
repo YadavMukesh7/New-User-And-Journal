@@ -1,2 +1,0 @@
-2025-04-14 11:04:11.590 [] INFO  - org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-04-14 11:04:11.605 [] INFO  - org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Graceful shutdown complete

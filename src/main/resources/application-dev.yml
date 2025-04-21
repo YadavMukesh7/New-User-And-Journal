@@ -3,31 +3,38 @@ spring:
     mongodb:
       uri: mongodb+srv://mukeshyadavbt01:DVAjiEiE8oGF74hd@cluster0.xx3j9.mongodb.net/journalDB?retryWrites=true&w=majority&appName=Cluster0
       auto-index-creation: true
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: mukeshyadavbt01@gmail.com
+    password: fvchjhukyskjytwj
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
 management:
   endpoints:
     web:
       exposure:
-        include: "*"  # If you want all endpoints exposed, otherwise list specific ones
+        include: "*"
     health:
-      show-details: always  # This will always show the details for health endpoints
+      show-details: always
 
 server:
   port: 8182
   servlet:
-    context-path: /journal  # Adjust this if necessary
+    context-path: /journal
+
 weather:
   api:
     key: 822f8cfdb03a4358040c24fd9c77f12f
 
-#Enabled logging level from DEBUG  to its above level severity
-#logging:
-#  level:
-#    com:
-#      springbootmongo: DEBUG
-
-#If we want to close all logging level from root then we can do like this
-
-#logging:
-#  level:
-#    root: OFF
-
+# Optional logging setup
+# logging:
+#   level:
+#     com:
+#       springbootmongo: DEBUG
