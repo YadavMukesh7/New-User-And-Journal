@@ -9,7 +9,7 @@ public class WeatherResponse {
     private Current current;
 
     @Data
-    public class Current {
+    public static class Current {  // ✅ Made static
         private String observation_time;
         private int temperature;
         private int weather_code;
